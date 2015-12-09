@@ -1,0 +1,74 @@
+\documentclass[a4paper, 10pt, twocolumn]{scrartcl}
+\usepackage[ngerman]{babel}
+
+% Mathematics
+\usepackage{amsmath}
+\usepackage{amssymb}
+\numberwithin{equation}{subsection}
+
+% Font and Style
+\usepackage{ucs}
+\usepackage[T1]{fontenc}
+\usepackage{abstract}
+\usepackage{url}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+
+% Source Code Highlighting
+\usepackage{caption}
+\usepackage[section]{minted}
+\usemintedstyle{trac}
+\setminted[java]{autogobble,mathescape,fontfamily=courier,breaklines,fontsize=\small}
+\renewcommand{\listingscaption}{Quellcode}
+
+% Font Package (select one)
+%\usepackage{lmodern}
+%\usepackage{kpfonts}
+%\usepackage{ccfonts}
+%\usepackage[light]{cmbright}
+%\usepackage{antpolt}
+\usepackage[light]{iwona}
+
+% Bibliography
+\usepackage[numbers,round]{natbib}
+\usepackage[babel,german=guillemets]{csquotes}
+\bibliographystyle{alphadin}
+
+% Image and Graphics
+\usepackage{graphicx}
+\usepackage{dblfloatfix}
+\usepackage[left=2.3cm, right=2.3cm, top=2.5cm, bottom=4.5cm]{geometry}
+\setlength{\columnsep}{15pt}
+\setlength{\columnseprule}{0.0pt}
+
+% Document Information
+\title{Robby Projekt}
+\subtitle{Erweiterung des Greenfoot Roboter-Szenarios um Sensorik, Speicher und  Hindernisumgehung}
+\author{Adrian Schrader \and Moritz Jung \and Alexander Riecke}
+\date{\today}
+
+\begin{document}
+  % Create Title, Abstract and TOC
+  \twocolumn[\maketitle \begin{abstract} \begin{minipage}{1.0\linewidth}
+  \input{tex/abstract}
+  \vspace{0.8cm}
+  \end{minipage}\end{abstract} ]
+
+  \tableofcontents
+
+  % CONTENT
+  \input{tex/sensoring}
+  \input{tex/memory}
+  \input{tex/obstacle}
+
+  % Bibliography
+  \bibliography{bib/bibliography.bib}
+
+  \onecolumn{
+    \captionof{listing}{Vollständige, dokumentierte Version der Klasse Robby.java, die alle oben beschreibenen Zusatzfuntionen enthält. }
+    \inputminted[firstline=1,linenos,numbers=left]{java}{code/Robby.java}
+  }
+
+
+\end{document}
