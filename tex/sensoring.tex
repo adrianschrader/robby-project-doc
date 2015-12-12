@@ -1,6 +1,7 @@
 \section{Sensorik}
 
 \subsection{Aufgabenstellung}
+\label{snsk:aufgabe}
 Um Robby Anhaltspunkt für seine Aktionen zu geben, sollen zwei verschiedene Arten von Sensoren eingeführt werden, mit denen Robby seine Umgebung abtasten kann. Robby kann nicht durch eine Wand laufen, also sollte er erkennen können, ob in seiner Umgebung solch ein Hindernis auftaucht.
 
 Eines der Hauptaktionen eines Roboters in diesem Szenario ist das Sammeln von Akkus für Energie. Um gezielter nach Akkus suchen muss Robby seine Umgebung nach ihnen abtasten.
@@ -9,8 +10,46 @@ Eines der Hauptaktionen eines Roboters in diesem Szenario ist das Sammeln von Ak
 Wenn, in Bezug auf Robbys Laufrichtung gesehen, ein Actor der Klasse Wand ein Feld hinter Robby steht, soll die Methode \mintinline{java}{true} zurückgeben, ansonsten \mintinline{java}{false}.
 
 \paragraph{akkuVorne() [ akkuRechts(), akkuLinks() ]}
-Wenn, in Bezug auf Robbys Laufrichtung gesehen, ein Actor der Klasse Akku ein Feld vor [rechts von, links von] Robby steht, soll die Methode true zurückgeben, ansonsten false.
+Wenn, in Bezug auf Robbys Laufrichtung gesehen, ein Actor der Klasse Akku ein Feld vor [rechts von, links von] Robby steht, soll die Methode \mintinline{java}{true} zurückgeben, ansonsten \mintinline{java}{false}.
 
 \subsection{Problematik}
+\label{snsk:problem}
+Diese vier Fälle können auf das Problem reduziert werden aus der Blickrichtung des Roboters und dem spezifischen Suchwinkel einen Vektor vom Roboter zum Suchfeld zu konstruieren, damit überprüft werden kann, ob die Methode \mintinline{java}{this.getOneObjectAtOffset(int v_x,int v_y,Class<?> c)} ein Objekt übergibt oder nicht.
+Die Mutterklasse Roboter löst die Aufgabe, in dem sie jeden einzelnen Suchvektor als einzelne Methode implementiert und in ihr die vier Blickrichtungen abfragt, um daraus einen fest einprogrammierten Vektor auszuwählen.
+Diese Herangehensweise funktioniert zwar, ist jedoch für eine schlanke, wiederverwendbare, nachvollziehbare und skalierbare Klasse nicht geeignet.
+Um die Klasse evtl. später um Abfragen zusätzlicher Aktoren erweitern zu können, muss die Abfrage in einer einzigen Methode stattfinden. Diese errechnet dynamisch aus den Faktoren den gewünschten Vektor.
 
 \subsection{Lösung}
+\label{snsk:loesung}
+Um die Lösung für dieses Problem zu verstehen ist es hilfreich den gesuchten Vektor $ \vec{v} $ als Zeiger zu verstehen, dessen Betrag immer auf $ \left| \vec{v} \right| = 1 $ genormt ist. Aus dem Winkel $ \theta $ von der Horizontalen lässt sich dann die Komponente in x und y-Richtung mithilfe von Sinus und Kosinus errechnen.
+\begin{align}
+  v_x = \left| \vec{v} \right| \cdot cos (\theta) && v_y = \left| \vec{v} \right| \cdot sin (\theta)
+\end{align}
+
+Für unseren Anwendungsfall interessieren uns nur ganzzahlige Werte von $v_x$ und $v_y$ zwischen -1 und 1. Daher können wir die Domäne für $\theta$ enger eingrenzen.
+
+\begin{align}
+  \theta \in \Big\{ k \cdot \frac{\pi}{2} \, | \, k \in \mathbb{N}_0 \Big\}
+\end{align}
+
+Für die in Abschnitt \ref{snsk:problem} besprochene Methode müssen wir jedoch zuerst den Winkel für die Laufrichtung und den Suchwinkel addieren, um auf den gesuchten Vektor zu kommen. Dieser soll dann in das Bogenma\ss  umgerechnet und zu den Komponenten verarbeitet werden. Über eine Abfrage der Methode \mintinline{java}{this.getOneObjectAtOffset(int v_x,int v_y,Class<?> c)} lässt sich dann der überprüfen, ob der gesuchte Actor existiert oder nicht.
+\begin{listing}
+  \begin{minted}{java}
+    /**
+     * Der Sensor überprüft, ob sich neben der Laufrichtung von Robby ein
+     * anderer Actor befindet.
+     * @param direction Winkel von der Laufrichtung zum Suchfeld.
+     * @param class Klasse des gesuchten Actors
+     * @return boolean
+     */
+    public boolean istObjektNebendran(int direction, Class<?> cl)
+    {
+       double angle = (this.getRotation() + direction) / 180.0 * Math.PI;
+
+       return (this.getOneObjectAtOffset(
+              (int)Math.cos(angle),
+              (int)Math.sin(angle), cl) != null);
+    }
+  \end{minted}
+  \caption{Die implementierte Methode \mintinline{java}{istObjektNebendran(int,Class<?>)} aus Robby.java }
+\end{listing}
