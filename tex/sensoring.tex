@@ -1,23 +1,16 @@
 \section{Sensorik}
 
 \subsection{Aufgabenstellung}
-\lipsum[2]
+Um Robby Anhaltspunkt für seine Aktionen zu geben, sollen zwei verschiedene Arten von Sensoren eingeführt werden, mit denen Robby seine Umgebung abtasten kann. Robby kann nicht durch eine Wand laufen, also sollte er erkennen können, ob in seiner Umgebung solch ein Hindernis auftaucht.
+
+Eines der Hauptaktionen eines Roboters in diesem Szenario ist das Sammeln von Akkus für Energie. Um gezielter nach Akkus suchen muss Robby seine Umgebung nach ihnen abtasten.
+
+\paragraph{wandHinten()}
+Wenn, in Bezug auf Robbys Laufrichtung gesehen, ein Actor der Klasse Wand ein Feld hinter Robby steht, soll die Methode \mintinline{java}{true} zurückgeben, ansonsten \mintinline{java}{false}.
+
+\paragraph{akkuVorne() [ akkuRechts(), akkuLinks() ]}
+Wenn, in Bezug auf Robbys Laufrichtung gesehen, ein Actor der Klasse Akku ein Feld vor [rechts von, links von] Robby steht, soll die Methode true zurückgeben, ansonsten false.
 
 \subsection{Problematik}
-\lipsum[3]
 
 \subsection{Lösung}
-\lipsum[4]
-
-\begin{listing}
-  \begin{minted}{java}
-    public static void main(String[] args) {
-      // Anweisungsblock
-      return;
-    }
-  \end{minted}
-  \caption{Beispielcode eines Programmstarts zur Einführung in die Verwendung von Listings. }
-  \label{lst:example}
-\end{listing}
-
-\lipsum[5]
