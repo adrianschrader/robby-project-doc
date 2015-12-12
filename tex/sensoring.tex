@@ -32,7 +32,7 @@ Für unseren Anwendungsfall interessieren uns nur ganzzahlige Werte von $v_x$ un
   \theta \in \Big\{ k \cdot \frac{\pi}{2} \, | \, k \in \mathbb{N}_0 \Big\}
 \end{align}
 
-Für die in Abschnitt \ref{snsk:problem} besprochene Methode müssen wir jedoch zuerst den Winkel für die Laufrichtung und den Suchwinkel addieren, um auf den gesuchten Vektor zu kommen. Dieser soll dann in das Bogenma\ss  umgerechnet und zu den Komponenten verarbeitet werden. Über eine Abfrage der Methode \mintinline{java}{this.getOneObjectAtOffset(int v_x,int v_y,Class<?> c)} lässt sich dann der überprüfen, ob der gesuchte Actor existiert oder nicht.
+Für die in Abschnitt~\ref{snsk:problem} besprochene Methode müssen wir jedoch zuerst den Winkel für die Laufrichtung und den Suchwinkel addieren und in das Bogenma\ss umrechnen. Aufgespalten in seine Komponenten kann der Vektor in die Methode \mintinline{java}{this.getOneObjectAtOffset(int v_x,int v_y,Class<?> c)} eingegeben und damit die Existenz des Objekts überprüft werden. Dargestellt ist die implementierte Methode im Quellcode~\ref{lst:istObjektNebendran}.
 \begin{listing}
   \begin{minted}{java}
     /**
@@ -51,5 +51,8 @@ Für die in Abschnitt \ref{snsk:problem} besprochene Methode müssen wir jedoch 
               (int)Math.sin(angle), cl) != null);
     }
   \end{minted}
-  \caption{Die implementierte Methode \mintinline{java}{istObjektNebendran(int,Class<?>)} aus Robby.java }
+  \caption{Implementation der Basismethode für die Sensorik aus Robby.java. }
+  \label{lst:istObjektNebendran}
 \end{listing}
+
+Nachdem wir diese Grundmethode implementiert haben, können die gesuchten Methoden durch eine einzelne Abfrage dargestellt werden. \mintinline{java}{akkuVorne()} verweist bspw. auf  \mintinline{java}{istObjektNebendran(0, Akku.class)}. Da Greenfoot Winkel im Uhrzeigersinn misst, verwendet die Abfrage von \mintinline{java}{akkuRechts()} den Suchwinkel $90^\circ$. Eine Liste aller Implementierungen ist in Quellcode~\ref{lst:robby} zu finden.
