@@ -1,0 +1,7 @@
+\subsection{Speicher}
+Die Test sollen überprüfen, ob Robby beim Einsammeln oder Ablegen von Objekten auch sein Inventar im Speicher aktualisiert.
+
+\subsubsection*{Testablauf}
+\textbf{Akkus} Robby wird immer wieder auf einen Akku gestellt und die Funktion zum einsammeln ausgeführt. Nach jedem Durchgang wird geprüft, ob Robby den Speicher um eins hochgezählt hat, die Variablengrenzen zwischen 0 und 10 nicht überschritten wurden und das Objekt tatsächlich entfernt wurde. Siehe \mintinline{java}{boolean testObjectAquisition(String, String, int, Class<?>)} in Quellcode \ref{lst:robbytest}.
+
+\textbf{Schraube} Die Funktion zum Ablegen wird wiederhohlt ausgeführt. Nach jedem Durchgang wird geprüft, ob Robby den Speicher um eins runtergezählt hat, die Variablengrenze von 0 nicht unterschritten wurden und das Objekt tatsächlich hinzugefügt wurde. Siehe \mintinline{java}{boolean testObjectDeposition(String, String, int, Class<?>)} in Quellcode \ref{lst:robbytest}.

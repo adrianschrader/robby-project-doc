@@ -1,8 +1,9 @@
+PATH := $(PATH):/Library/TeX/texbin
 filename-doc=document
 directory-doc=./
 directory-code=../robby-project
 
-.PHONY: all doc code
+.PHONY: all doc code clean
 
 all: code doc
 
@@ -11,7 +12,7 @@ code:
 	cp ${directory-code}/*.java code/
 
 doc:
-	cd ${directory-doc} && latexmk -pdf -xelatex -shell-escape -use-make ${filename-doc}.tex
+	cd ${directory-doc} && latexmk -pdf -xelatex -shell-escape ${filename-doc}.tex
 
 clean:
 	cd ${directory-doc} && latexmk -c

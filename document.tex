@@ -5,6 +5,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \numberwithin{equation}{subsection}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
 
 % Font and Style
 \usepackage{ucs}
@@ -58,20 +60,38 @@
   \tableofcontents
 
   % CONTENT
+  \section{Implementierung}
   \input{tex/sensoring}
   \input{tex/memory}
   \input{tex/obstacle}
 
-  % Bibliography
-  \bibliography{bib/bibliography.bib}
+  \section{Funktionstests}
+  \input{tex/tests/sensoring}
+  \input{tex/tests/memory}
+  \input{tex/tests/obstacle}
+
+  \input{tex/group}
 
   \onecolumn{
     \section{Anhang: Vollständiger Quellcode}
+    Alle geänderten oder hnzugefügten Klassen werden im Folgenden aufgeführt. Die Zeilenangaben links entsprechen denen im Greenfoot-Szenario.
+
+    \subsection{Robby.java}
+    \label{lst:robby}
     \inputminted[firstline=1,linenos,numbers=left]{java}{code/Robby.java}
-    \begin{listing}
-      \captionof{listing}{Vollständige, dokumentierte Version der Klasse Robby.java, die alle oben beschreibenen Zusatzfuntionen enthält. }
-      \label{lst:robby}
-    \end{listing}
+
+    \subsection{FeatureTest.java}
+    \label{lst:featuretest}
+    \inputminted[firstline=1,linenos,numbers=left]{java}{code/FeatureTest.java}
+
+    \subsection{RobbyTest.java}
+    \label{lst:robbytest}
+    \inputminted[firstline=1,linenos,numbers=left]{java}{code/RobbyTest.java}
+
+    \subsection{RoboterWelt.java}
+    \label{lst:roboterwelt}
+    \inputminted[firstline=1,linenos,numbers=left]{java}{code/RoboterWelt.java}
+
   }
 
 
