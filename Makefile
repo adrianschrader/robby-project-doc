@@ -3,7 +3,7 @@ filename-doc=document
 directory-doc=./
 directory-code=../robby-project
 
-.PHONY: all doc code clean
+.PHONY: all doc code clean javadoc
 
 all: code doc
 
@@ -19,3 +19,6 @@ clean:
 	rm -f ${directory-doc}${filename-doc}.{ps,log,aux,out,dvi,bbl,blg,toc,fls,fdb_latexmk,.bbl,.dvi,.pygtex}
 	rm -rf **/*.{ps,log,aux,out,dvi,bbl,blg,toc,fls,fdb_latexmk,nav,snm,vrb,.pygtex,.minted}
 	rm -rf _minted-document code
+
+javadoc:
+	cd ../../ && javadoc -d github/robby-project-doc/javadoc/ github.robby-project

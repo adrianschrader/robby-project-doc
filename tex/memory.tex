@@ -1,7 +1,20 @@
 \subsection{Speicher}
 
 \subsubsection*{Aufgabenstellung}
+Die Klasse Robby sollte durch die in ihrer Funktion erweiterten Methoden akkuAufnehmen() und schraubeAblegen() mit zwei neu instanziierten globalen Variablen anzahlAkkus und anzahlSchrauben bestimmte Änderungen abspeichern können.
+Hierzu war vorgesehen, dass die Klasse Robby die vorher festgelegte Anzahl an Schrauben und Akkus nach Ausführung der Methoden jeweils um eins erniedrigt bzw. um eins erhöht. Sollten die Methoden nicht ausführbar sein, was durch ein leeres Feld ohne Akku oder zu wenig Schrauben verursacht werden könnte, war eine aussagekräftige Meldung vorgesehen, die dies beschreibt.
+
 
 \subsubsection*{Problematik}
+Die ersten Schritte zur Herangehensweise an die Aufgabe waren zunächst die globalen Variablen. Anhand der vorgebenen Werte beider Variabeln, entstand hier bereits die Idee bei einer if-Abfrage diese Werte als Bedingung für das weitere Verfahren in der Methode zu verwenden.
+Mit Hilfe dieser Grundüberlegung entwickelten sich beide Methoden in der Planung zu jeweils einer einzigen if-Abfrage, in der mehre Bedingungen und Szenarien gleichzeitig abgedeckt werden. So war zum Beispiel vorgesehen in einer if-Abfrage ein leeres Feld UND eine noch nicht überschrittene Maximalanzahl an Akkus zu implementieren.
+
+Dadurch entstand jedoch nach einigen Testdurchläufen ein Problem mit der getrennten Ausgabe der Fehlermeldung und der getrennten, nacheinander abfolgenden Ausführung in der if-Schleife.
 
 \subsubsection*{Lösung}
+Hierfür war dann eine Verschachtelung der Befehlskette vorgesehen.
+Hierzu wurden dann die Befehle mit zweiten if-Abfragen ineinander verschachtelt und es entstand eine chronologische Vorgehensweise.
+Indem die Klasse Robby an dem bereits oben erwähnten Beispiel zunächst das Feld überprüft und dort einen Akku erkennt (Feld nicht leer), wird nun erst die Maximalanzahl von zehn Akkus überprüft. Ist diese auch noch nicht überschritten wird nun ein Akku aufgenommen und in den Speicher einbezogen. Bei Überlastung der Speichergrenze (größer 10) wird nun in der gleichen Abfrage per else-Schleife eine Fehlermeldung ausgegeben.
+Falls sich auf dem überprüften Feld jedoch kein Akku befindet wird hier jetzt in der äußeren if-Schleife separat per else-Abfrage eine entsprechende Fehlermeldung gezeigt, was das aufgetretene Problem letztendlich gelöst hat.
+
+Ein Test der beiden erweiterten Methoden zeigt nun eine erwartete Verringerung der Schrauben- und Erhöhung der Akku-Anzahl bezogen auf die Werte in den globalen Variablen. In entsprechenden Szenarien reagiert die Klasse Robby auch mit den Situationen entsprechenden Fehlermeldungen, wodurch die Speicherfunktion ihren Anforderungen entsprechend erfolgreich funktioniert.
