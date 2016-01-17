@@ -1,9 +1,18 @@
 \subsection{Hindernisse}
 
 \subsubsection*{Aufgabenstellung}
-Aufgabenstellung war es, Robby ein geschlossenes Hindernis aus Wänden umrunden zu lassen, so dass er nach erfolgreicher Umrundung wieder am Ausgangspunkt ankommt.
-Auch die Weltgrenze wird als Hindernis wahrgenommen
+Aufgabenstellung war es, Robby ein geschlossenes Hindernis aus Wänden umrunden zu lassen, so dass er nach erfolgreicher Umrundung wieder am Ausgangspunkt ankommt. Auch die Weltgrenze wird als Hindernis wahrgenommen. 
 
 \subsubsection*{Problematik}
+Als augenscheinlich einfachste Lösung stellte sich eine Verkettung von mehreren if-Abfragen heraus, in der nacheinander von rechts beginnend gegen den Uhrzeigersinn die einzelnen möglichen Bewegungsrichtungen abgefragt wurden. Diese Lösung erwies sich jedoch als sehr verschachtelt, da für jede Abfrage eine einzelne Reaktionsanweisung erstellt werden musste.
+Weiterhin konnten anfangs nur sehr begrenzte Tests durchgeführt werden, da die Funktion in einem Ablauf ausgeführt wird und somit keine Möglichkeit besteht, auch weitergehende Aufgaben währenddessen auszuführen.
+
 
 \subsubsection*{Lösung}
+Durch Einführen einer do-while-Schleife und einer for-Schleife für die Abfragen der Umgebung, also der Wände und Weltgrenzen auf benachbarten Feldern, konnte der Code auf ein Minimum reduziert werden, in dem  zwar immernoch von Rechts beginnend die Umgebung angefragt wird, jedoch die Funktion immer wieder mit anderem Winkel aufgerufen wird und nicht für jede Richtung eine neue Abfrage geschrieben werden muss.
+Auch eine Möglichkeit zum Ausführen von weiterem Code während der Umrundung wurde implementiert, um bspw.\ auch weitergehende Aufgaben, wie zum Beispiel das Ablegen von Schrauben zu ermöglichen, aber auch, um zu die zu Testzwecken benötigten Daten während der Umrundung zu erfassen.
+
+\subsection*{Beschreibung der Funktion}
+Der endgültige Algorhitmus startet mit mehreren Vorbereitungen, zuerst wid die aktuelle Position, aufgeteilt in X- und Y-Koordinaten in die lokale Variablen startX und startY gespeichert. Diese werden später als Abbruchbedingung der Schleife gebraucht. Dann wird der Roboter in die richtige Richtung gedreht, da er zu Anfang gegen das Hindernis blickt.
+Erst dann beginnt der eigentliche Algorhitmus, der immer wieder aufgerufen wird. Hier werden dann nacheinander, von rechts beginnend die einzelnen Bewegungsrichtungen abgefragt, sobald in einer Richtung kein Hindernis gefunden wird, kann zuerst eine Aktion ausgeführt werden, dann bewegt sich Robby auf das freie Feld. Wenn er sich auf das freie Feld bewegt hat, muss die Schleife abgebrochen und neu gestartet werden, damit wieder von rechts angefangen wird zu suchen. Die Schleife wird immer wieder aufgerufen, solange Robby nicht wieder auf seinem Startfeld, das am Anfang durch die beiden Koordinaten gespeichert wurde, steht.
+Wenn Robby dann wieder auf seinem Startfeld steht, dreht er sich wieder ein letztes Mal nach rechts, um wieder zum Hindernis zu blicken.
