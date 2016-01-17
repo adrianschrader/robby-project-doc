@@ -14,12 +14,12 @@ In der \mintinline{java}{FeatureTest} erweiternden Klasse \mintinline{java}{Robb
 \end{figure}
 
 \subsection{Sensorik}
-Robbys Sensorfunktionen für Akkus und Wände, die im Rahmen dieses Projekts erweitert wurden, sollen die jeweiligen Spielfiguren positiv, sowie negativ nachweisen können. Falsch positive und falsch negative Ergenisse müssen ausgeschlossen werden. Jede Funktion muss außerdem in unterschiedlichen Blickrichtungen getestet werden, um Zufallstreffer auszuschließen.
+Robbys Sensorfunktionen für Akkus und Wände, die im Rahmen dieses Projekts erweitert wurden, sollen die jeweiligen Spielfiguren positiv, sowie negativ nachweisen können. Falsch positive und falsch negative Ergenisse müssen ausgeschlossen werden. Jede Funktion muss au\ss{}erdem in unterschiedlichen Blickrichtungen getestet werden, um Zufallstreffer auszuschlie\ss{}en.
 
 Im Gegensatz zur Implementierung der Funktionen in Robby müssen die Testfunktionen wasserdicht sein. Deduktive mathematische Beweise werden daher durch das ausprobieren jedes möglichen Falls in jeder Ausgangssituation getestet.
 
 \subsubsection*{Testablauf}
-Robby wird in Schleifen durch die verschiedenen Situationen/Winkel iteriert. Es wird für jeden Blickwinkel ($0^\circ, 90^\circ, 180^\circ$ und $270^\circ$) überprüft, ob die zuständige Funktion erkennt, dass kein Objekt neben Robby liegt und dass sich nach dem Einfügen des gesuchten Objekts neben Robby der Test positiv ausfällt. Die Objekte werden danach wieder aufgeräumt und aus der Welt entfernt. 
+Robby wird in Schleifen durch die verschiedenen Situationen/Winkel iteriert. Es wird für jeden Blickwinkel ($0^\circ, 90^\circ, 180^\circ$ und $270^\circ$) überprüft, ob die zuständige Funktion erkennt, dass kein Objekt neben Robby liegt und dass sich nach dem Einfügen des gesuchten Objekts neben Robby der Test positiv ausfällt. Die Objekte werden danach wieder aufgeräumt und aus der Welt entfernt.
 
 \subsubsection*{Situationen: }
 Drehungen um $0^\circ, 90^\circ, 180^\circ$ und $270^\circ$
